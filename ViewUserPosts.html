@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <div>
+            <h1>Which user's posts would you like to view?</h1>
+        </div>
+        <form action="ViewUserPosts.php" method="post" id="userInput">
+            <select name="userSelect" id="userSelect">
+                <?php
+                $mysqli = new mysqli("mysql.eecs.ku.edu", "alexreeves", "Ahgeer4o", "alexreeves");
+                if ($mysqli->connect_errno) {
+                    printf("Connect failed: %s\n", $mysqli->connect_error);
+                    exit();
+                }
+
+                $search = "SELECT * FROM users";
+                $users = mysqli_query($mysqli, $search);
+
+                while($searchRow = mysqli_fetch_array($users)){
+                    echo "<option value='" . $searchRow['user_id'] . "'>" . $searchRow['user_id'] . "</option>";
+                }
+                $mysqli->close();
+                ?>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <div>
+            <h1>Write a post!</h1>
+        </div>
+        <form action="CreatePosts.php" method="post" id="userInput">
+            <div>
+                <input type="text" id="authorID" name="authorID" required minlength="1" maxlength="255" placeholder="Author Username">
+            </div>
+            <div>
+                <textarea id="postBody" name="postBody" required minlength="1" placeholder="Type your post here!" rows="5" cols="40"></textarea>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
