@@ -1,0 +1,36 @@
+<body>
+    <div>
+        <h1>Select which posts you would like to be deleted</h1>
+        <div>(If list does not reflect posts deleted refresh the page)</div>
+    </div>
+    <form action="DeletePost.php" method="post" id="userInput">
+        <table border='1' name="postSelect" id="postSelect">
+            <tr>
+                <td>Post Body</td>
+                <td>Author</td>
+                <td>Delete?</td>
+            </tr>
+            <?php
+            $mysqli = new mysqli("mysql.eecs.ku.edu", "alexreeves", "Ahgeer4o", "alexreeves");
+            if ($mysqli->connect_errno) {
+                printf("Connect failed: %s\n", $mysqli->connect_error);
+                exit();
+            }
+
+            $search = "SELECT * FROM posts";
+            $posts = mysqli_query($mysqli, $search);
+
+            while($searchRow = mysqli_fetch_array($posts)){
+                echo "<tr>
+                    <td>" . $searchRow['content'] . "</td>
+                    <td>" . $searchRow['author_id'] . "</td>
+                    <td> <input type='checkbox' name='box" . $searchRow['post_id'] . "'> </td>
+                    </tr>";          
+            }
+            $mysqli->close();
+            ?>
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
